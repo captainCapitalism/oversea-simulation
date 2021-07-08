@@ -6,9 +6,14 @@ authors = ["michal bargiel <michal5bargiel@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+pandas = "^1.3.0"
+jupyterlab = "^3.0.16"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+black = {version = "^21.6b0", extras = ["d"]}
+mypy = "^0.910"
+pytest = "^6.2.4"
+pandas-stubs = "^1.1.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
