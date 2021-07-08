@@ -1,5 +1,9 @@
+from typing import List
+
 import pandas
+import spacy
 import toolz
+from spacy import tokens
 
 
 def remove_garbage(
@@ -22,3 +26,10 @@ def transform(
         remove_garbage,
         rename_column,
     )
+
+
+def with_spacy(
+    model: spacy.Language,
+    data: pandas.DataFrame,
+) -> List[spacy.tokens.Doc]:
+    return [model(card) for card in data]
