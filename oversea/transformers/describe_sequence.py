@@ -15,5 +15,5 @@ def describe(data: List[Union[int, float]]) -> Description:
     return Description(
         mean=statistics.mean(data),
         stdev=statistics.stdev(data),
-        median=statistics.stdev(data),
+        median=statistics.median(data),
     )
