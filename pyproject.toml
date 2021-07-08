@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "overseen"
+name = "oversea"
 version = "0.1.0"
 description = ""
 authors = ["michal bargiel <michal5bargiel@gmail.com>"]

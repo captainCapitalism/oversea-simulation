@@ -1,6 +1,6 @@
 import pandas
 
-from overseen.read import read_csv, read_expeditions
+from oversea.read import read_csv, read_expeditions
 
 
 def test_read_expeditions(data_dir) -> None:
