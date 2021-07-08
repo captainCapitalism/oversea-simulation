@@ -27,6 +27,5 @@ def histogram(data: List[Union[int, float]]) -> plotly.graph_objs.Figure:
         annotation_text="mean - stdev",
         annotation_position="top left",
     )
-    fig.show()
 
     return fig
