@@ -1,6 +1,6 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Cost(BaseModel):
-    cash: int
-    geist: int
+    cash: int = Field(0, ge=0)
+    geist: int = Field(0, ge=0)

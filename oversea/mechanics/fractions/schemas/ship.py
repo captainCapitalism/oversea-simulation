@@ -24,7 +24,7 @@ class Stats(BaseModel):
 
 class Ship(BaseModel):
     name: str
-    trait: Set[Traits]
+    traits: Set[Traits]
     stats: Stats
     cost: Cost
     advanced: bool
