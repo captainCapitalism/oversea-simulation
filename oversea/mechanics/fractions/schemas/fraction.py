@@ -22,3 +22,5 @@ class Fraction(BaseModel):
     magic_technologies: List[Technology]
     ships: List[Ship]
     stronghold_stats: Stats
+    colony_cost: Cost
+    colony_income: Cost

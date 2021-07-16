@@ -22,11 +22,11 @@ arhant = Fraction(
         geist=0,
     ),
     main_goal="Destroy three cities, including one capital city.",
-    perks=[
+    perks=(
         "Once a round you can discard a Intrigue or Magic card to draw a new one or gain 2 cash "
         "or 1 geist.",
         "Sacrifice 1 geist when playing a card to draw a new one of the same type.",
-    ],
+    ),
     buildings=arhant_buildings,
     technologies=arhant_technologies,
     magic_technologies=arhant_magic_technologies,
@@ -38,4 +38,6 @@ arhant = Fraction(
         hit_points=1,
         speed=0,
     ),
+    colony_cost=Cost(cash=4),
+    colony_income=Cost(cash=2),
 )
