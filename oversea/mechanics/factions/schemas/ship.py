@@ -28,3 +28,8 @@ class Ship(BaseModel):
     stats: Stats
     cost: Cost
     advanced: bool
+    damage: int = 0
+
+    @property
+    def current_health(self):
+        return self.stats.hit_points - self.damage
