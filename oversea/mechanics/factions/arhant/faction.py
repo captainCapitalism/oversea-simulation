@@ -6,10 +6,10 @@ from oversea.mechanics.factions.arhant.ships import arhant_ships
 from oversea.mechanics.factions.arhant.technologies import arhant_technologies
 from oversea.mechanics.factions.schemas.base_resources import BaseResources
 from oversea.mechanics.factions.schemas.cost import Cost
-from oversea.mechanics.factions.schemas.fraction import Fraction
-from oversea.mechanics.factions.schemas.ship import Stats
+from oversea.mechanics.factions.schemas.fraction import Faction
+from oversea.mechanics.factions.schemas.ship_data import Stats
 
-arhant = Fraction(
+arhant = Faction(
     name="Arhant",
     combat_factor=2,
     base_resources=BaseResources(

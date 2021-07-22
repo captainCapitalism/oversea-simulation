@@ -1,7 +1,7 @@
 from oversea.mechanics.factions.schemas.cost import Cost
-from oversea.mechanics.factions.schemas.ship import Ship, Stats, Traits
+from oversea.mechanics.factions.schemas.ship_data import ShipData, Stats, Traits
 
-galley = Ship(
+galley = ShipData(
     name="Galley",
     traits={Traits.rowing},
     stats=Stats(
@@ -14,7 +14,7 @@ galley = Ship(
     cost=Cost(cash=2),
     advanced=False,
 )
-black_boat = Ship(
+black_boat = ShipData(
     name="Black Boat",
     traits={Traits.agile, Traits.artillery},
     stats=Stats(
@@ -27,7 +27,7 @@ black_boat = Ship(
     cost=Cost(cash=4),
     advanced=False,
 )
-silent_arc = Ship(
+silent_arc = ShipData(
     name="Silent Arc",
     traits={Traits.stronghold, Traits.artillery, Traits.deep},
     stats=Stats(
