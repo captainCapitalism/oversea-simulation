@@ -1,5 +1,5 @@
-from oversea.mechanics.fractions.schemas.building import Building
-from oversea.mechanics.fractions.schemas.cost import Cost
+from oversea.mechanics.factions.schemas.building import Building
+from oversea.mechanics.factions.schemas.cost import Cost
 
 eternal_forges = Building(
     name="Eternal Forges",

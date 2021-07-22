@@ -1,5 +1,5 @@
-from oversea.mechanics.fractions.schemas.cost import Cost
-from oversea.mechanics.fractions.schemas.technology import Technology
+from oversea.mechanics.factions.schemas.cost import Cost
+from oversea.mechanics.factions.schemas.technology import Technology
 
 
 innovative_boatbuilding = Technology(

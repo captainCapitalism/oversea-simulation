@@ -1,13 +1,13 @@
-from oversea.mechanics.fractions.arhant.buildings import arhant_buildings
-from oversea.mechanics.fractions.arhant.magic_technologies import (
+from oversea.mechanics.factions.arhant.buildings import arhant_buildings
+from oversea.mechanics.factions.arhant.magic_technologies import (
     arhant_magic_technologies,
 )
-from oversea.mechanics.fractions.arhant.ships import arhant_ships
-from oversea.mechanics.fractions.arhant.technologies import arhant_technologies
-from oversea.mechanics.fractions.schemas.base_resources import BaseResources
-from oversea.mechanics.fractions.schemas.cost import Cost
-from oversea.mechanics.fractions.schemas.fraction import Fraction
-from oversea.mechanics.fractions.schemas.ship import Stats
+from oversea.mechanics.factions.arhant.ships import arhant_ships
+from oversea.mechanics.factions.arhant.technologies import arhant_technologies
+from oversea.mechanics.factions.schemas.base_resources import BaseResources
+from oversea.mechanics.factions.schemas.cost import Cost
+from oversea.mechanics.factions.schemas.fraction import Fraction
+from oversea.mechanics.factions.schemas.ship import Stats
 
 arhant = Fraction(
     name="Arhant",

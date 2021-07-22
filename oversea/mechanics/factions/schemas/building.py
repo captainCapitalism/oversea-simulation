@@ -2,7 +2,7 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from oversea.mechanics.fractions.schemas.cost import Cost
+from oversea.mechanics.factions.schemas.cost import Cost
 
 
 class Building(BaseModel):

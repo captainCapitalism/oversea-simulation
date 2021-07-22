@@ -1,5 +1,5 @@
-from oversea.mechanics.fractions.schemas.cost import Cost
-from oversea.mechanics.fractions.schemas.ship import Ship, Stats, Traits
+from oversea.mechanics.factions.schemas.cost import Cost
+from oversea.mechanics.factions.schemas.ship import Ship, Stats, Traits
 
 galley = Ship(
     name="Galley",
