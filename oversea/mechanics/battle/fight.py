@@ -1,6 +1,6 @@
-from oversea.mechanics.factions.schemas.ship_data import ShipData
+from oversea.mechanics.factions.schemas.ship import Ship
 
 
-def fight(ship_a: ShipData, ship_b: ShipData) -> ShipData:
-    ship_b.damage = ship_b.stats.hit_points
+def fight(ship_a: Ship, ship_b: Ship) -> Ship:
+    ship_b.damage = ship_b.data.stats.hit_points
     return ship_a
