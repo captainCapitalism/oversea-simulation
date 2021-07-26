@@ -10,7 +10,6 @@ class HitThresholds(int, enum.Enum):
     HIGH = 8
 
 
-
 def fight(
     ship_a: Ship,
     ship_b: Ship,
