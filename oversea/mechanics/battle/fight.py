@@ -1,9 +1,14 @@
-from oversea.mechanics.factions.schemas.ship import Ship
+import enum
 import operator
 
-HIT_CONSTANT = 5
-LOWEST_HIT_THRESHOLD = 1
-HIGHEST_HIT_THRESHOLD = 8
+from oversea.mechanics.factions.schemas.ship import Ship
+
+
+class HitThresholds(int, enum.Enum):
+    BASE = 5
+    LOW = 1
+    HIGH = 8
+
 
 
 def fight(
@@ -19,12 +24,12 @@ def hit_threshold(
     resilience: int,
 ) -> int:
     calculated_threshold = operator.add(
-        HIT_CONSTANT,
+        HitThresholds.BASE,
         operator.sub(resilience, fire_power),
     )
 
-    if calculated_threshold < LOWEST_HIT_THRESHOLD:
-        return LOWEST_HIT_THRESHOLD
-    if calculated_threshold > HIGHEST_HIT_THRESHOLD:
-        return HIGHEST_HIT_THRESHOLD
+    if calculated_threshold < HitThresholds.LOW:
+        return HitThresholds.LOW
+    if calculated_threshold > HitThresholds.HIGH:
+        return HitThresholds.HIGH
     return calculated_threshold

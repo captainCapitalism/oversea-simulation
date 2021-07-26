@@ -1,7 +1,6 @@
 from oversea.mechanics.battle.fight import (
     hit_threshold,
-    LOWEST_HIT_THRESHOLD,
-    HIGHEST_HIT_THRESHOLD,
+    HitThresholds,
 )
 
 
@@ -13,7 +12,7 @@ def test_cannot_be_below_min():
         resilience=resilience,
     )
 
-    assert threshold == LOWEST_HIT_THRESHOLD
+    assert threshold == HitThresholds.LOW
 
 
 def test_cannot_exceed_8():
@@ -25,4 +24,4 @@ def test_cannot_exceed_8():
         resilience=resilience,
     )
 
-    assert threshold == HIGHEST_HIT_THRESHOLD
+    assert threshold == HitThresholds.HIGH
