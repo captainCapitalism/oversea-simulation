@@ -1,5 +1,7 @@
 .idea
 .hypothesis
+.pytest_cache
+
 *.png
 __pycache__
 
