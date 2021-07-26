@@ -1,4 +1,5 @@
 .idea
+.hypothesis
 *.png
 __pycache__
 
