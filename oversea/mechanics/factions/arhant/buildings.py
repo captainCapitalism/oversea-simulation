@@ -1,28 +1,29 @@
 from oversea.mechanics.factions.schemas.building import Building
 from oversea.mechanics.factions.schemas.cost import Cost
+from oversea.mechanics.factions.schemas.income import Income
 
 eternal_forges = Building(
     name="Eternal Forges",
     cost=Cost(cash=4),
-    effect="+2 cash a turn.",
+    effect=Income(cash=2),
 )
 underground_mines = Building(
     name="Underground Mines",
     cost=Cost(cash=6),
-    effect="+3 cash a turn.",
+    effect=Income(cash=3),
     requirement=eternal_forges,
 )
 
 ash_oracle = Building(
     name="Ash Oracle",
     cost=Cost(cash=3),
-    effect="+1 geist a turn.",
+    effect=Income(geist=1),
 )
 
 silent_council = Building(
     name="Silent Council",
     cost=Cost(cash=4),
-    effect="+1 intrigue card a turn.",
+    effect=Income(intrigue_cards=1),
 )
 
 brotherhood_of_dream = Building(
@@ -39,7 +40,7 @@ brotherhood_of_idea = Building(
 war_shipyard = Building(
     name="War Shipyard",
     cost=Cost(cash=4),
-    effect="Access to all fraction ships.",
+    effect="Access to all faction ships.",
 )
 colony_war_shipyards = Building(
     name="Colony War Shipyards",
