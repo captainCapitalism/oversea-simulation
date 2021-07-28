@@ -1,6 +1,7 @@
 import json
 import logging
 
+from oversea.mechanics.city.sim.safe_get import safe_get
 from oversea.mechanics.factions.arhant import buildings
 from oversea.mechanics.factions.arhant.faction import arhant
 from oversea.mechanics.factions.schemas.bank import Bank
@@ -16,30 +17,20 @@ def sim(
     turns: int,
 ) -> Bank:
     for turn in range(turns):
-        this_turn_costs = get_costs(costs, turn)
+        this_turn_costs = safe_get(costs, turn)
         for cost in this_turn_costs:
             bank -= cost
-        this_turn_effects = get_costs(effects, turn)
+        this_turn_effects = safe_get(effects, turn)
         for effect in this_turn_effects:
             income = income + effect
         bank += income
-        logging.log(
-            logging.DEBUG,
-            f'Turn {turn} income {json.dumps(income.dict())}'
-        )
+        logging.log(logging.DEBUG, f"Turn {turn} income {json.dumps(income.dict())}")
         logging.log(
             logging.DEBUG,
             f"Turn {turn} ends with {json.dumps(bank.dict())}",
         )
 
     return bank
-
-
-def get_costs(costs: list[list[Cost]], turn: int):
-    try:
-        return costs[turn]
-    except IndexError:
-        return []
 
 
 def base_arhant(turns: int) -> Bank:
@@ -63,9 +54,7 @@ def arhant_with_buildings(turns: int) -> Bank:
         [buildings.eternal_forges.cost],
         [buildings.ash_oracle.cost],
     ]
-    effects = [
-        [Income(cash=2), Income(geist=1)]
-    ]
+    effects = [[Income(cash=2), Income(geist=1)]]
     return sim(
         bank=turn_0,
         income=income,
