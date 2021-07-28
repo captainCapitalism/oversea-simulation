@@ -1,5 +1,4 @@
 from oversea.mechanics.factions.schemas.base_resources import BaseResources
-from oversea.mechanics.factions.schemas.income import Income
 
 
 class Bank(BaseResources):
@@ -7,7 +6,7 @@ class Bank(BaseResources):
 
     def __add__(
         self,
-        income: Income,
+        income: BaseResources,
     ) -> "Bank":
         self.cash += income.cash
         self.geist += income.geist
