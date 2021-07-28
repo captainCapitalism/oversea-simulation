@@ -6,7 +6,7 @@ from oversea.mechanics.factions.arhant import buildings
 from oversea.mechanics.factions.arhant.faction import arhant
 from oversea.mechanics.factions.schemas.action import CreateBuilding, Action
 from oversea.mechanics.factions.schemas.bank import Bank
-from oversea.mechanics.factions.schemas.income import Income
+from oversea.mechanics.factions.schemas.income import Income, Reward
 
 
 def sim(
@@ -20,8 +20,12 @@ def sim(
         for action in this_turn_actions:
             if isinstance(action, CreateBuilding):
                 bank -= action.target.cost
-                income += action.target.effect
-
+            for effect in action.target.effects:
+                if isinstance(effect, Income):
+                    income += effect
+            for effect in action.target.rewards:
+                if isinstance(effect, Reward):
+                    bank += effect
         bank += income
         logging.log(
             logging.DEBUG,
@@ -35,19 +39,6 @@ def sim(
     return bank
 
 
-def base_arhant(turns: int) -> Bank:
-    turn_0 = arhant.bank + arhant.base_resources
-
-    income = Income(**arhant.base_income.dict())
-
-    return sim(
-        bank=turn_0,
-        income=income,
-        costs=[],
-        turns=turns,
-    )
-
-
 def arhant_with_buildings(turns: int) -> Bank:
     turn_0 = arhant.bank + arhant.base_resources
 
@@ -55,6 +46,8 @@ def arhant_with_buildings(turns: int) -> Bank:
     actions = [
         [CreateBuilding(target=buildings.eternal_forges)],
         [CreateBuilding(target=buildings.ash_oracle)],
+        [CreateBuilding(target=buildings.silent_council)],
+        [CreateBuilding(target=buildings.brotherhood_of_dream)],
     ]
     return sim(
         bank=turn_0,
