@@ -14,3 +14,10 @@ class Income(BaseResources):
         }
 
         return Income(**increased_values)
+
+
+Income.update_forward_refs()
+
+
+class Reward(BaseResources):
+    pass
