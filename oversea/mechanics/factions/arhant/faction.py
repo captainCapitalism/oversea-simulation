@@ -4,9 +4,11 @@ from oversea.mechanics.factions.arhant.magic_technologies import (
 )
 from oversea.mechanics.factions.arhant.ships import arhant_ships
 from oversea.mechanics.factions.arhant.technologies import arhant_technologies
+from oversea.mechanics.factions.schemas.bank import Bank
 from oversea.mechanics.factions.schemas.base_resources import BaseResources
 from oversea.mechanics.factions.schemas.cost import Cost
 from oversea.mechanics.factions.schemas.fraction import Faction
+from oversea.mechanics.factions.schemas.income import Income
 from oversea.mechanics.factions.schemas.ship_data import Stats
 
 arhant = Faction(
@@ -40,4 +42,6 @@ arhant = Faction(
     ),
     colony_cost=Cost(cash=4),
     colony_income=Cost(cash=2),
+    income=Income(),
+    bank=Bank(),
 )
