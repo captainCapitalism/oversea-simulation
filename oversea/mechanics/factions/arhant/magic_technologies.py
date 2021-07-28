@@ -14,14 +14,12 @@ higher_magic_arcanas = Technology(
     "drawing.",
     requirement=lower_magic_aranas,
 )
-superior_magic_arcanas = (
-    Technology(
-        name="Superior Magic Arcanas",
-        cost=Cost(geist=3),
-        effect="You gain extra turn after current one. You may use this power once a round, "
-        "each time paying its initial cost.",
-        requirement=higher_magic_arcanas,
-    ),
+superior_magic_arcanas = Technology(
+    name="Superior Magic Arcanas",
+    cost=Cost(geist=3),
+    effect="You gain extra turn after current one. You may use this power once a round, "
+    "each time paying its initial cost.",
+    requirement=higher_magic_arcanas,
 )
 arhant_magic_technologies = [
     lower_magic_aranas,

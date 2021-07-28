@@ -10,3 +10,6 @@ class Building(BaseModel):
     effect: str
     cost: Cost
     requirement: Optional["Building"]
+
+
+Building.update_forward_refs()
