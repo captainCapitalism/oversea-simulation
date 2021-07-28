@@ -10,3 +10,6 @@ class Ship(BaseModel):
     @property
     def current_health(self) -> int:
         return self.data.stats.hit_points - self.damage
+
+    def get_hit(self):
+        self.damage += 1
