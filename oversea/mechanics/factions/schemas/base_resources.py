@@ -1,9 +1,9 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 
 class BaseResources(BaseModel):
-    cash: int = Field(0)
-    geist: int = Field(0)
-    intrigue_cards: int = Field(0)
-    magic_cards: int = Field(0)
-    goal_cards: int = Field(0)
+    cash: int = 0
+    geist: int = 0
+    intrigue_cards: int = 0
+    magic_cards: int = 0
+    goal_cards: int = 0
