@@ -1,6 +1,5 @@
-from pydantic import BaseModel, Field
+from oversea.mechanics.factions.schemas.base_resources import BaseResources
 
 
-class Cost(BaseModel):
-    cash: int = Field(0, ge=0)
-    geist: int = Field(0, ge=0)
+class Cost(BaseResources):
+    pass
