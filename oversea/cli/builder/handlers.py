@@ -5,6 +5,7 @@ import os.path
 from oversea.mechanics.factions.schemas.base_resources import BaseResources
 from oversea.mechanics.factions.schemas.building import Building
 from oversea.mechanics.factions.schemas.colony_data import ColonyData
+from oversea.mechanics.factions.schemas.income import Income
 from oversea.mechanics.factions.schemas.ship import Ship
 from oversea.mechanics.factions.schemas.ship_data import ShipData
 
@@ -46,7 +47,7 @@ def load_income(sim_path: str) -> BaseResources:
     with open(os.path.join(sim_path, Inputs.base_income), "r") as f:
         obj: dict = json.load(f)
 
-    return BaseResources(**obj)
+    return Income(**obj)
 
 
 def load_starting_resources(sim_path: str) -> BaseResources:
@@ -81,7 +82,7 @@ def load_colony(sim_path: str) -> ColonyData:
     return ColonyData(**obj)
 
 
-def load_simulation(name: str, dir: str) -> json:
+def load_simulation(name: str, dir: str):
     sim_path = os.path.join(dir, SIM_DIRECTORY, name, "inputs")
 
     starting_resources = load_starting_resources(sim_path)
