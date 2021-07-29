@@ -4,7 +4,7 @@ import typer
 
 from oversea.cli.builder.handlers import load_simulation
 
-builder = typer.Typer()
+builder = typer.Typer(name="builder")
 
 
 @builder.command()
@@ -13,6 +13,7 @@ def display(name: str, data_directory: Path = "data"):
         starting_resources,
         ships,
         income,
+        fleet,
         colony,
         buildings,
     ] = load_simulation(name, str(data_directory))
@@ -32,6 +33,11 @@ def display(name: str, data_directory: Path = "data"):
     print()
     print("Ships: ")
     for ship in ships:
+        print(ship.dict(exclude_defaults=True))
+
+    print()
+    print("Fleet: ")
+    for ship in fleet:
         print(ship.dict(exclude_defaults=True))
 
     print()

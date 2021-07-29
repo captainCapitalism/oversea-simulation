@@ -15,6 +15,7 @@ from oversea.mechanics.factions.schemas.action import (
 )
 from oversea.mechanics.factions.schemas.bank import Bank
 from oversea.mechanics.factions.schemas.cost import Cost
+from oversea.mechanics.factions.schemas.fleet import Fleet
 from oversea.mechanics.factions.schemas.income import Income, Reward
 from oversea.mechanics.factions.schemas.ship import Ship
 
@@ -76,10 +77,10 @@ def sim(
     bank: Bank,
     income: Income,
     actions: list[list[Action]],
+    fleet: Fleet,
     turns: int,
 ) -> Bank:
     colony_count = 0
-    fleet = arhant.fleet
 
     for turn in range(turns):
         this_turn_actions = safe_get(actions, turn)
@@ -117,6 +118,8 @@ def arhant_with_buildings(turns: int) -> Bank:
     turn_0 = arhant.bank + arhant.base_resources
 
     income = Income(**arhant.base_income.dict())
+    fleet = arhant.fleet
+
     actions = [
         [CreateBuilding(target=buildings.eternal_forges)],
         [CreateBuilding(target=buildings.ash_oracle)],
@@ -130,6 +133,7 @@ def arhant_with_buildings(turns: int) -> Bank:
         bank=turn_0,
         income=income,
         actions=actions,
+        fleet=fleet,
         turns=turns,
     )
 

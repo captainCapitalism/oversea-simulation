@@ -6,11 +6,13 @@ from pathlib import Path
 import typer
 
 from oversea.cli.builder.builder import builder
+from oversea.cli.builder.handlers import load_simulation
 from oversea.cli.handlers import new_simulation_structure
-from oversea.mechanics.city.sim.income import arhant_with_buildings
+from oversea.mechanics.city.sim.income import sim
+from oversea.mechanics.factions.schemas.bank import Bank
 
 app = typer.Typer()
-app.add_typer(builder, name="builder")
+app.add_typer(builder)
 SIM_DIRECTORY = "sim"
 
 
@@ -43,7 +45,22 @@ def list_simulations(data_directory: Path = "data"):
 
 
 @app.command(name="run")
-def run_simulation():
+def run_simulation(name: str, data_directory: Path = "data"):
     logging.basicConfig(level=logging.DEBUG)
+    [
+        starting_resources,
+        ships,
+        income,
+        fleet,
+        colony,
+        buildings,
+    ] = load_simulation(name, str(data_directory))
+    result = sim(
+        bank=Bank() + starting_resources,
+        income=income,
+        actions=[],
+        fleet=fleet,
+        turns=10,
+    )
 
-    res = arhant_with_buildings(10)
+    print(result)
