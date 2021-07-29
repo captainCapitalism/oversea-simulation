@@ -4,5 +4,6 @@
 
 *.png
 __pycache__
+dist/
 
 data/
