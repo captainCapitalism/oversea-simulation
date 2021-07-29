@@ -4,6 +4,5 @@ from oversea.mechanics.factions.schemas.income import Income
 
 colony_data = ColonyData(
     cost=Cost(cash=4),
-    effects=[Income(cash=2)],
-    rewards=[],
+    effect=Income(cash=2),
 )
