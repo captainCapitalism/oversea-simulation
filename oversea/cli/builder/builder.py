@@ -1,19 +1,16 @@
-from pathlib import Path
-
 import typer
 
 from oversea.cli.builder.handlers import load_simulation
 
-builder = typer.Typer(name="builder")
+DATA_DIRECTORY = "data"
+builder = typer.Typer(
+    name="builder", help="commands for interacting with simulation inputs."
+)
 
 
-@builder.command()
+@builder.command(help="Display inputs for given simulation.")
 def display(
     name: str = typer.Argument(..., help="Simulation name."),
-    data_directory: Path = typer.Option(
-        "data",
-        help="Directory in which data is stored.",
-    ),
 ):
     [
         starting_resources,
@@ -23,7 +20,7 @@ def display(
         colony,
         buildings,
         actions,
-    ] = load_simulation(name, str(data_directory))
+    ] = load_simulation(name, str(DATA_DIRECTORY))
 
     print()
     print("Starting Resources: ")
@@ -44,7 +41,7 @@ def display(
 
     print()
     print("Fleet: ")
-    for ship in fleet:
+    for ship in fleet.ships:
         print(ship.dict(exclude_defaults=True))
 
     print()

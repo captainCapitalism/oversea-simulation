@@ -18,19 +18,20 @@ from oversea.mechanics.factions.schemas.bank import Bank
 app = typer.Typer()
 app.add_typer(builder)
 SIM_DIRECTORY = "sim"
+DATA_DIRECTORY = "data"
 
 
-@app.command(name="new")
+@app.command(
+    name="new",
+    help="Create new simulation. Use --base to copy inputs from existing one",
+)
 def new(
     name: str = typer.Argument(..., help="Simulation name."),
     base: str = typer.Option(None, help="Simulation name to copy data from."),
-    data_directory: Path = typer.Option(
-        "data", help="Directory in which data is stored."
-    ),
 ):
-    if not os.path.exists(data_directory):
-        os.mkdir(data_directory)
-    sim_path = os.path.join(data_directory, SIM_DIRECTORY)
+    if not os.path.exists(DATA_DIRECTORY):
+        os.mkdir(DATA_DIRECTORY)
+    sim_path = os.path.join(DATA_DIRECTORY, SIM_DIRECTORY)
 
     if not os.path.exists(sim_path):
         os.mkdir(sim_path)
@@ -40,15 +41,11 @@ def new(
         copy_simulation(name, base, Path(sim_path))
 
 
-@app.command()
-def example(
-    data_directory: Path = typer.Option(
-        "data", help="Directory in which data is stored."
-    ),
-):
-    example_name = "sim_example"
+@app.command(help="Generate example simulation data.")
+def example():
+    example_name = "example"
     path_to_example = os.path.join(os.path.dirname(__file__), example_name)
-    target_path = os.path.join(data_directory, "sim", example_name)
+    target_path = os.path.join(DATA_DIRECTORY, "sim", example_name)
     shutil.copytree(path_to_example, target_path)
 
     outputs_path = os.path.join(target_path, "outputs")
@@ -61,38 +58,28 @@ def example(
     )
 
 
-@app.command()
+@app.command(help="Delete given simulation.")
 def delete(
     name: str = typer.Argument(..., help="Simulation name."),
-    data_directory: Path = typer.Option(
-        "data", help="Directory in which data is stored."
-    ),
 ):
-    this_sim_directory = os.path.join(data_directory, SIM_DIRECTORY, name)
+    this_sim_directory = os.path.join(DATA_DIRECTORY, SIM_DIRECTORY, name)
     shutil.rmtree(this_sim_directory)
     coloured_name = typer.style(name, fg=typer.colors.RED)
     typer.echo(f"Simulation {coloured_name} was removed.")
 
 
-@app.command(name="list")
-def list_simulations(
-    data_directory: Path = typer.Option(
-        "data", help="Directory in which data is stored."
-    ),
-):
-    sim_path = os.path.join(data_directory, SIM_DIRECTORY)
+@app.command(name="list", help="Show available simulations.")
+def list_simulations():
+    sim_path = os.path.join(DATA_DIRECTORY, SIM_DIRECTORY)
 
     simulations = os.listdir(sim_path)
     for simulation in simulations:
         typer.echo(simulation)
 
 
-@app.command(name="run")
+@app.command(name="run", help="Run given simulation.")
 def run_simulation(
     name: str = typer.Argument(..., help="Simulation name."),
-    data_directory: Path = typer.Option(
-        "data", help="Directory in which data is stored."
-    ),
 ):
     logging.basicConfig(level=logging.DEBUG)
     [
@@ -103,7 +90,7 @@ def run_simulation(
         colony,
         buildings,
         actions,
-    ] = load_simulation(name, str(data_directory))
+    ] = load_simulation(name, str(DATA_DIRECTORY))
 
     report = sim(
         bank=Bank() + starting_resources,
@@ -113,4 +100,4 @@ def run_simulation(
         turns=10,
     )
 
-    dump_simulation(name, data_directory, report)
+    dump_simulation(name, DATA_DIRECTORY, report)
