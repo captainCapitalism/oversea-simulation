@@ -6,7 +6,6 @@ from oversea.mechanics.factions.schemas.bank import Bank
 from oversea.mechanics.factions.schemas.base_resources import BaseResources
 from oversea.mechanics.factions.schemas.building import Building
 from oversea.mechanics.factions.schemas.colony_data import ColonyData
-from oversea.mechanics.factions.schemas.cost import Cost
 from oversea.mechanics.factions.schemas.fleet import Fleet
 from oversea.mechanics.factions.schemas.income import Income
 from oversea.mechanics.factions.schemas.ship_data import ShipData, Stats
@@ -18,7 +17,7 @@ class Faction(BaseModel):
     name: str
     combat_factor: int
     base_resources: BaseResources
-    base_income: Cost
+    base_income: BaseResources
     main_goal: str
     perks: Tuple[str, str]
     buildings: List[Building]

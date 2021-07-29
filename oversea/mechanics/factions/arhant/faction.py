@@ -8,7 +8,6 @@ from oversea.mechanics.factions.arhant.starting_fleet import starting_fleet
 from oversea.mechanics.factions.arhant.technologies import arhant_technologies
 from oversea.mechanics.factions.schemas.bank import Bank
 from oversea.mechanics.factions.schemas.base_resources import BaseResources
-from oversea.mechanics.factions.schemas.cost import Cost
 from oversea.mechanics.factions.schemas.faction import Faction
 from oversea.mechanics.factions.schemas.income import Income
 from oversea.mechanics.factions.schemas.ship_data import Stats
@@ -21,7 +20,7 @@ arhant = Faction(
         geist=3,
         intrigue_cards=2,
     ),
-    base_income=Cost(
+    base_income=BaseResources(
         cash=2,
         geist=0,
     ),
