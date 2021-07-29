@@ -39,15 +39,27 @@ def new(
     else:
         copy_simulation(name, base, Path(sim_path))
 
+
 @app.command()
 def example(
     data_directory: Path = typer.Option(
         "data", help="Directory in which data is stored."
     ),
 ):
-    path_to_example = os.path.join(os.path.dirname(__file__), "sim_example")
-    target_path = os.path.join(data_directory, "sim", "sim_example")
-    shutil.copytree(path_to_example,target_path)
+    example_name = "sim_example"
+    path_to_example = os.path.join(os.path.dirname(__file__), example_name)
+    target_path = os.path.join(data_directory, "sim", example_name)
+    shutil.copytree(path_to_example, target_path)
+
+    outputs_path = os.path.join(target_path, "outputs")
+    if not os.path.exists(outputs_path):
+        os.mkdir(outputs_path)
+
+    typer.echo(
+        f"{typer.style(example_name, fg=typer.colors.BLUE)} created at "
+        f"{typer.style(target_path, fg=typer.colors.RED)}"
+    )
+
 
 @app.command()
 def delete(
