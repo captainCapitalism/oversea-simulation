@@ -18,9 +18,11 @@ SIM_DIRECTORY = "sim"
 
 @app.command(name="new")
 def new(
-    name: str,
-    base: str = typer.Option(None),
-    data_directory: Path = "data",
+    name: str = typer.Argument(..., help="Simulation name."),
+    base: str = typer.Option(None, help="Simulation name to copy data from."),
+    data_directory: Path = typer.Option(
+        "data", help="Directory in which data is stored."
+    ),
 ):
     if not os.path.exists(data_directory):
         os.mkdir(data_directory)
@@ -36,8 +38,10 @@ def new(
 
 @app.command()
 def delete(
-    name: str,
-    data_directory: Path = "data",
+    name: str = typer.Argument(..., help="Simulation name."),
+    data_directory: Path = typer.Option(
+        "data", help="Directory in which data is stored."
+    ),
 ):
     this_sim_directory = os.path.join(data_directory, SIM_DIRECTORY, name)
     shutil.rmtree(this_sim_directory)
@@ -47,7 +51,9 @@ def delete(
 
 @app.command(name="list")
 def list_simulations(
-    data_directory: Path = "data",
+    data_directory: Path = typer.Option(
+        "data", help="Directory in which data is stored."
+    ),
 ):
     sim_path = os.path.join(data_directory, SIM_DIRECTORY)
 
@@ -58,8 +64,10 @@ def list_simulations(
 
 @app.command(name="run")
 def run_simulation(
-    name: str,
-    data_directory: Path = "data",
+    name: str = typer.Argument(..., help="Simulation name."),
+    data_directory: Path = typer.Option(
+        "data", help="Directory in which data is stored."
+    ),
 ):
     logging.basicConfig(level=logging.DEBUG)
     [

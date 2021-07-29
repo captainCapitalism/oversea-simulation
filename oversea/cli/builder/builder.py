@@ -8,7 +8,13 @@ builder = typer.Typer(name="builder")
 
 
 @builder.command()
-def display(name: str, data_directory: Path = "data"):
+def display(
+    name: str = typer.Argument(..., help="Simulation name."),
+    data_directory: Path = typer.Option(
+        "data",
+        help="Directory in which data is stored.",
+    ),
+):
     [
         starting_resources,
         ships,
