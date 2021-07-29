@@ -7,7 +7,7 @@ from tests.filenames import Filenames, PL_ENCODING
 
 
 def get_data_directory() -> str:
-    return path.join(path.dirname(path.dirname(__file__)), "data")
+    return path.join(path.dirname(path.dirname(__file__)), "../data")
 
 
 def read_csv(
