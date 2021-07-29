@@ -5,11 +5,12 @@ from pathlib import Path
 
 import typer
 
+from oversea.cli.builder.builder import builder
 from oversea.cli.handlers import new_simulation_structure
 from oversea.mechanics.city.sim.income import arhant_with_buildings
 
 app = typer.Typer()
-
+app.add_typer(builder, name="builder")
 SIM_DIRECTORY = "sim"
 
 
