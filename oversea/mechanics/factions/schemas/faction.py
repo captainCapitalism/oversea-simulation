@@ -5,6 +5,7 @@ from pydantic import BaseModel
 from oversea.mechanics.factions.schemas.bank import Bank
 from oversea.mechanics.factions.schemas.base_resources import BaseResources
 from oversea.mechanics.factions.schemas.building import Building
+from oversea.mechanics.factions.schemas.colony_data import ColonyData
 from oversea.mechanics.factions.schemas.cost import Cost
 from oversea.mechanics.factions.schemas.fleet import Fleet
 from oversea.mechanics.factions.schemas.income import Income
@@ -25,8 +26,7 @@ class Faction(BaseModel):
     magic_technologies: List[Technology]
     ships: List[ShipData]
     stronghold_stats: Stats
-    colony_cost: Cost
-    colony_income: Cost
     income: Income
     bank: Bank
     fleet: Fleet
+    colony_data: ColonyData

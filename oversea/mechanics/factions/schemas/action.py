@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 
 from oversea.mechanics.factions.schemas.building import Building
+from oversea.mechanics.factions.schemas.colony_data import ColonyData
 from oversea.mechanics.factions.schemas.ship_data import ShipData
 
 
@@ -14,3 +15,7 @@ class CreateBuilding(Action):
 
 class CreateShip(Action):
     target: ShipData
+
+
+class CreateColony(Action):
+    target: ColonyData

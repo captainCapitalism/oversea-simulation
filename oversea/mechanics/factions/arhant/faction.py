@@ -1,4 +1,5 @@
 from oversea.mechanics.factions.arhant.buildings import arhant_buildings
+from oversea.mechanics.factions.arhant.colony_data import colony_data
 from oversea.mechanics.factions.arhant.magic_technologies import (
     arhant_magic_technologies,
 )
@@ -8,7 +9,7 @@ from oversea.mechanics.factions.arhant.technologies import arhant_technologies
 from oversea.mechanics.factions.schemas.bank import Bank
 from oversea.mechanics.factions.schemas.base_resources import BaseResources
 from oversea.mechanics.factions.schemas.cost import Cost
-from oversea.mechanics.factions.schemas.fraction import Faction
+from oversea.mechanics.factions.schemas.faction import Faction
 from oversea.mechanics.factions.schemas.income import Income
 from oversea.mechanics.factions.schemas.ship_data import Stats
 
@@ -41,8 +42,7 @@ arhant = Faction(
         hit_points=1,
         speed=0,
     ),
-    colony_cost=Cost(cash=4),
-    colony_income=Cost(cash=2),
+    colony_data=colony_data,
     income=Income(),
     bank=Bank(),
     fleet=starting_fleet,
