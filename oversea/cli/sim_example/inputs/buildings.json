@@ -1,0 +1,57 @@
+{
+  "Eternal Forges": {
+    "cost": {
+      "cash": 4
+    },
+    "effects": [
+      {
+        "cash": 2
+      }
+    ]
+  },
+  "Underground Mines": {
+    "cost": {
+      "cash": 6
+    },
+    "effects": [
+      {
+        "cash": 3
+      }
+    ]
+  },
+  "Ash Oracle": {
+    "cost": {
+      "cash": 3
+    },
+    "effects": [
+      {
+        "geist": 1
+      }
+    ]
+  },
+  "Silent Council": {
+    "cost": {
+      "cash": 4
+    },
+    "effects": [
+      {
+        "intrigue_cards": 1
+      }
+    ]
+  },
+  "Brotherhood of Dream": {
+    "cost": {
+      "cash": 3
+    },
+    "effects": [
+      {
+        "magic_cards": 1
+      }
+    ],
+    "rewards": [
+      {
+        "magic_cards": 1
+      }
+    ]
+  }
+}

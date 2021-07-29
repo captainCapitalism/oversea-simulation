@@ -1,0 +1,19 @@
+[
+  [
+    {
+      "type": "building",
+      "name": "eternal forges"
+    }
+  ],
+  [
+    {
+      "type": "ship",
+      "name": "galley"
+    }
+  ],
+  [
+    {
+      "type": "colony"
+    }
+  ]
+]

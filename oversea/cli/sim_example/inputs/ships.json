@@ -1,0 +1,20 @@
+{
+    "Galley": {
+        "cost": {
+            "cash": 2
+        },
+        "tier": 1
+    },
+    "Black Boat": {
+        "cost": {
+            "cash": 4
+        },
+        "tier": 2
+    },
+    "Silent Arc": {
+        "cost": {
+            "cash": 7
+        },
+        "tier": 3
+    }
+}
