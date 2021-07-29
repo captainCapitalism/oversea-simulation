@@ -1,5 +1,5 @@
 import enum
-from typing import List, Set
+from typing import Set, Optional
 
 from pydantic import BaseModel, Field
 
@@ -24,7 +24,7 @@ class Stats(BaseModel):
 
 class ShipData(BaseModel):
     name: str
-    traits: Set[Traits]
-    stats: Stats
+    stats: Optional[Stats]
     cost: Cost
-    advanced: bool
+    traits: Set[Traits] = set()
+    advanced: bool = False
