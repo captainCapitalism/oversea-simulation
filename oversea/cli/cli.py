@@ -7,7 +7,7 @@ import typer
 
 from oversea.cli.builder.builder import builder
 from oversea.cli.builder.handlers import load_simulation
-from oversea.cli.handlers import new_simulation_structure
+from oversea.cli.handlers import new_simulation_structure, copy_simulation
 from oversea.mechanics.city.sim.income import sim
 from oversea.mechanics.factions.schemas.bank import Bank
 
@@ -19,15 +19,19 @@ SIM_DIRECTORY = "sim"
 @app.command(name="new")
 def new(
     name: str,
+    base: str = typer.Option(None),
     data_directory: Path = "data",
 ):
     if not os.path.exists(data_directory):
         os.mkdir(data_directory)
     sim_path = os.path.join(data_directory, SIM_DIRECTORY)
+
     if not os.path.exists(sim_path):
         os.mkdir(sim_path)
-
-    new_simulation_structure(name, Path(sim_path))
+    if base is None:
+        new_simulation_structure(name, Path(sim_path))
+    else:
+        copy_simulation(name, base, Path(sim_path))
 
 
 @app.command()
