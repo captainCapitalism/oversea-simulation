@@ -12,15 +12,19 @@ from oversea.mechanics.factions.schemas.action import (
     IncreaseIncome,
 )
 from oversea.mechanics.factions.schemas.bank import Bank
+from oversea.mechanics.factions.schemas.cost import Cost
 from oversea.mechanics.factions.schemas.income import Income, Reward
 
 
 def handle_colony(
     action: CreateColony,
     bank: Bank,
+    colony_count: int,
 ) -> Tuple[Bank, IncreaseIncome]:
-    bank -= action.target.cost
-
+    bank -= Cost(
+        **action.target.cost.dict(exclude={"cash"}),
+        cash=action.target.cost.cash + colony_count,
+    )
     new_event = IncreaseIncome(income=action.target.effect)
 
     return bank, new_event
@@ -62,13 +66,17 @@ def sim(
     actions: list[list[Action]],
     turns: int,
 ) -> Bank:
+    colony_count = 0
+
     for turn in range(turns):
         this_turn_actions = safe_get(actions, turn)
         for action in this_turn_actions:
             if isinstance(action, CreateBuilding):
                 bank, income = handle_building(action, bank, income)
             elif isinstance(action, CreateColony):
-                bank, new_action = handle_colony(action, bank)
+                bank, new_action = handle_colony(action, bank, colony_count)
+                colony_count += 1
+
                 add_action(new_action, actions, turn=turn + 1)
             elif isinstance(action, IncreaseIncome):
                 income += action.income
@@ -95,6 +103,7 @@ def arhant_with_buildings(turns: int) -> Bank:
         [CreateBuilding(target=buildings.ash_oracle)],
         [CreateBuilding(target=buildings.silent_council)],
         [CreateBuilding(target=buildings.brotherhood_of_dream)],
+        [CreateColony(target=colony_data.colony_data)],
         [CreateColony(target=colony_data.colony_data)],
     ]
     return sim(
