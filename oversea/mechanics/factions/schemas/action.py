@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from oversea.mechanics.factions.schemas.building import Building
 from oversea.mechanics.factions.schemas.colony_data import ColonyData
 from oversea.mechanics.factions.schemas.income import Income
+from oversea.mechanics.factions.schemas.ship import Ship
 from oversea.mechanics.factions.schemas.ship_data import ShipData
 
 
@@ -24,3 +25,7 @@ class CreateColony(Action):
 
 class IncreaseIncome(Action):
     income: Income
+
+
+class DispatchShip(Action):
+    ship: Ship

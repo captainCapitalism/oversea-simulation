@@ -3,17 +3,20 @@ import logging
 from typing import Tuple
 
 from oversea.mechanics.city.sim.safe_get import safe_get
-from oversea.mechanics.factions.arhant import buildings, colony_data
+from oversea.mechanics.factions.arhant import buildings, colony_data, ships
 from oversea.mechanics.factions.arhant.faction import arhant
 from oversea.mechanics.factions.schemas.action import (
     CreateBuilding,
     Action,
     CreateColony,
     IncreaseIncome,
+    CreateShip,
+    DispatchShip,
 )
 from oversea.mechanics.factions.schemas.bank import Bank
 from oversea.mechanics.factions.schemas.cost import Cost
 from oversea.mechanics.factions.schemas.income import Income, Reward
+from oversea.mechanics.factions.schemas.ship import Ship
 
 
 def handle_colony(
@@ -46,6 +49,15 @@ def handle_building(
     return bank, income
 
 
+def handle_ship(
+    action: CreateShip,
+    bank: Bank,
+) -> Tuple[Bank, DispatchShip]:
+    bank -= action.target.cost
+    new_action = DispatchShip(ship=Ship(data=action.target))
+    return bank, new_action
+
+
 def add_action(
     action: Action,
     actions: list[list[Action]],
@@ -67,6 +79,7 @@ def sim(
     turns: int,
 ) -> Bank:
     colony_count = 0
+    fleet = arhant.fleet
 
     for turn in range(turns):
         this_turn_actions = safe_get(actions, turn)
@@ -76,10 +89,16 @@ def sim(
             elif isinstance(action, CreateColony):
                 bank, new_action = handle_colony(action, bank, colony_count)
                 colony_count += 1
-
                 add_action(new_action, actions, turn=turn + 1)
+            elif isinstance(action, CreateShip):
+                bank, new_action = handle_ship(action, bank)
+                add_action(new_action, actions, turn=turn + 1)
+
             elif isinstance(action, IncreaseIncome):
                 income += action.income
+
+            elif isinstance(action, DispatchShip):
+                fleet += action.ship
 
         bank += income
         logging.log(
@@ -105,6 +124,7 @@ def arhant_with_buildings(turns: int) -> Bank:
         [CreateBuilding(target=buildings.brotherhood_of_dream)],
         [CreateColony(target=colony_data.colony_data)],
         [CreateColony(target=colony_data.colony_data)],
+        [CreateShip(target=ships.galley)],
     ]
     return sim(
         bank=turn_0,

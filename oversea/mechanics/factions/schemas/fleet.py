@@ -9,4 +9,4 @@ class Fleet(BaseModel):
     def __add__(self, new_ship: Ship):
         self.ships.append(new_ship)
 
-        return Fleet
+        return self
