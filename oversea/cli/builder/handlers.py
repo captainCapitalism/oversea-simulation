@@ -1,7 +1,14 @@
 import enum
 import json
 import os.path
+from typing import TypeVar
 
+from oversea.mechanics.factions.schemas.action import (
+    Action,
+    CreateBuilding,
+    CreateShip,
+    CreateColony,
+)
 from oversea.mechanics.factions.schemas.base_resources import BaseResources
 from oversea.mechanics.factions.schemas.building import Building
 from oversea.mechanics.factions.schemas.colony_data import ColonyData
@@ -19,6 +26,7 @@ class Inputs(str, enum.Enum):
     ships = "ships.json"
     starting_resources = "starting_resources.json"
     starting_fleet = "starting_fleet.json"
+    actions = "actions.json"
 
 
 def load_ships(sim_path: str) -> list[ShipData]:
@@ -82,6 +90,43 @@ def load_colony(sim_path: str) -> ColonyData:
     return ColonyData(**obj)
 
 
+def load_actions(
+    sim_path: str,
+    ships: list[ShipData],
+    buildings: list[Building],
+    colony: ColonyData,
+) -> list[list[Action]]:
+    with open(os.path.join(sim_path, Inputs.actions), "r") as f:
+        obj: dict = json.load(f)
+
+    actions = []
+    for day in obj:
+        today_actions = []
+        for action in day:
+            if action["type"] == "building":
+                target_building = find_in_config(action["name"], buildings)
+                today_actions.append(CreateBuilding(target=target_building))
+            if action["type"] == "ship":
+                target_ship = find_in_config(action["name"], ships)
+                today_actions.append(CreateShip(target=target_ship))
+            if action["type"] == "colony":
+                today_actions.append(CreateColony(target=colony))
+        actions.append(today_actions)
+
+    return actions
+
+
+T = TypeVar("T")
+
+
+def find_in_config(name: str, some_sequence: list[T]) -> T:
+    for el in some_sequence:
+        if name.lower() == el.name.lower():
+            return el
+
+    raise ValueError(f"{name} not found in {some_sequence}")
+
+
 def load_simulation(name: str, dir: str):
     sim_path = os.path.join(dir, SIM_DIRECTORY, name, "inputs")
 
@@ -91,5 +136,6 @@ def load_simulation(name: str, dir: str):
     colony = load_colony(sim_path)
     buildings = load_buildings(sim_path)
     fleet = load_fleet(sim_path, ships)
+    actions = load_actions(sim_path, ships, buildings, colony)
 
-    return starting_resources, ships, income, fleet, colony, buildings
+    return starting_resources, ships, income, fleet, colony, buildings, actions

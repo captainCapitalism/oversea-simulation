@@ -16,6 +16,7 @@ def display(name: str, data_directory: Path = "data"):
         fleet,
         colony,
         buildings,
+        actions,
     ] = load_simulation(name, str(data_directory))
 
     print()
@@ -44,3 +45,9 @@ def display(name: str, data_directory: Path = "data"):
     print("Buildings: ")
     for building in buildings:
         print(building.dict(exclude_defaults=True))
+
+    print()
+    print("Actions: ")
+    for turn in actions:
+        for action in turn:
+            print(action.dict(exclude_defaults=True))
