@@ -7,7 +7,11 @@ import typer
 
 from oversea.cli.builder.builder import builder
 from oversea.cli.builder.handlers import load_simulation
-from oversea.cli.handlers import new_simulation_structure, copy_simulation
+from oversea.cli.handlers import (
+    new_simulation_structure,
+    copy_simulation,
+    dump_simulation,
+)
 from oversea.mechanics.city.sim.income import sim
 from oversea.mechanics.factions.schemas.bank import Bank
 
@@ -80,7 +84,7 @@ def run_simulation(
         actions,
     ] = load_simulation(name, str(data_directory))
 
-    result = sim(
+    report = sim(
         bank=Bank() + starting_resources,
         income=income,
         actions=actions,
@@ -88,4 +92,4 @@ def run_simulation(
         turns=10,
     )
 
-    print(result)
+    dump_simulation(name, data_directory, report)

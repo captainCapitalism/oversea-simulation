@@ -28,3 +28,4 @@ class ShipData(BaseModel):
     cost: Cost
     traits: Set[Traits] = set()
     advanced: bool = False
+    tier: int = Field(..., ge=0, le=3)

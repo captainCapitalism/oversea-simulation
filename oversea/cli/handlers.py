@@ -2,7 +2,14 @@ import os
 import shutil
 from pathlib import Path
 
+import pandas
 import typer
+from pydantic import BaseModel
+
+from oversea.mechanics.city.sim.income import Report
+from oversea.mechanics.factions.schemas.fleet import Fleet
+
+SIM_DIRECTORY = "sim"
 
 
 def new_simulation_structure(
@@ -41,3 +48,57 @@ def copy_simulation(
         typer.echo(
             f"{coloured_base} simulation does not exist. Could not create {coloured_name}"
         )
+
+
+report_paths = {
+    "banks": "banks.csv",
+    "incomes": "incomes.csv",
+    "fleets": "fleets.csv",
+    "costs": "costs.csv",
+}
+
+
+class FleetDescription(BaseModel):
+    value: int = 0
+    number_of_ships: int = 0
+    tier_1: int = 0
+    tier_2: int = 0
+    tier_3: int = 0
+
+
+def serialize_fleet(fleet: Fleet) -> FleetDescription:
+    description = FleetDescription()
+    for ship in fleet.ships:
+        description.value += ship.data.cost.cash
+        description.number_of_ships += 1
+        tier = ship.data.tier
+        if tier == 1:
+            description.tier_1 += 1
+        if tier == 2:
+            description.tier_2 += 1
+        if tier == 3:
+            description.tier_3 += 1
+
+    return description
+
+
+def dump_simulation(
+    name: str,
+    path: Path,
+    report: Report,
+):
+    for key, target_file in report_paths.items():
+        output_path = os.path.join(path, SIM_DIRECTORY, name, "outputs", target_file)
+
+        if key == "fleets":
+            objects = pandas.DataFrame(
+                serialize_fleet(fleet).dict() for fleet in getattr(report, key)
+            )
+        else:
+            objects = pandas.DataFrame(obj.dict() for obj in getattr(report, key))
+        with open(output_path, "w") as f:
+            objects.to_csv(
+                f,
+                sep=",",
+                index=False,
+            )

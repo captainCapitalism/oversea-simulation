@@ -13,6 +13,7 @@ galley = ShipData(
     ),
     cost=Cost(cash=2),
     advanced=False,
+    tier=1,
 )
 black_boat = ShipData(
     name="Black Boat",
@@ -26,6 +27,7 @@ black_boat = ShipData(
     ),
     cost=Cost(cash=4),
     advanced=False,
+    tier=2,
 )
 silent_arc = ShipData(
     name="Silent Arc",
@@ -39,6 +41,7 @@ silent_arc = ShipData(
     ),
     cost=Cost(cash=7),
     advanced=True,
+    tier=3,
 )
 
 arhant_ships = [

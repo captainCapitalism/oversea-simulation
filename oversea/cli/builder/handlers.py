@@ -12,6 +12,7 @@ from oversea.mechanics.factions.schemas.action import (
 from oversea.mechanics.factions.schemas.base_resources import BaseResources
 from oversea.mechanics.factions.schemas.building import Building
 from oversea.mechanics.factions.schemas.colony_data import ColonyData
+from oversea.mechanics.factions.schemas.fleet import Fleet
 from oversea.mechanics.factions.schemas.income import Income
 from oversea.mechanics.factions.schemas.ship import Ship
 from oversea.mechanics.factions.schemas.ship_data import ShipData
@@ -65,14 +66,14 @@ def load_starting_resources(sim_path: str) -> BaseResources:
     return BaseResources(**obj)
 
 
-def load_fleet(sim_path: str, ship_data: list[ShipData]) -> list[Ship]:
+def load_fleet(sim_path: str, ship_data: list[ShipData]) -> Fleet:
     with open(os.path.join(sim_path, Inputs.starting_fleet), "r") as f:
         obj: list = json.load(f)
 
     ships = []
     for ship in obj:
         ships.append(spawn_ship(ship, ship_data))
-    return ships
+    return Fleet(ships=ships)
 
 
 def spawn_ship(name: str, ship_data: list[ShipData]) -> Ship:
