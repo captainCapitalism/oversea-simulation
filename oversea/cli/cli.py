@@ -28,6 +28,17 @@ def new(name: str, data_directory: Path = "data"):
 def delete(name: str, data_directory: Path = "data"):
     this_sim_directory = os.path.join(data_directory, SIM_DIRECTORY, name)
     shutil.rmtree(this_sim_directory)
+    coloured_name = typer.style(name, fg=typer.colors.RED)
+    typer.echo(f"Simulation {coloured_name} was removed.")
+
+
+@app.command(name="list")
+def list_simulations(data_directory: Path = "data"):
+    sim_path = os.path.join(data_directory, SIM_DIRECTORY)
+
+    simulations = os.listdir(sim_path)
+    for simulation in simulations:
+        typer.echo(simulation)
 
 
 @app.command(name="run")
