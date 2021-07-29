@@ -7,6 +7,6 @@ class Fleet(BaseModel):
     ships: list[Ship]
 
     def __add__(self, new_ship: Ship):
-        self.ships.append(new_ship)
+        new_fleet = self.ships + [new_ship]
 
-        return self
+        return Fleet(ships=new_fleet)
