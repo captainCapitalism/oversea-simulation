@@ -18,14 +18,14 @@ def sim(
     for turn in range(turns):
         this_turn_actions = safe_get(actions, turn)
         for action in this_turn_actions:
-            if isinstance(action, CreateBuilding):
+            if action is not str:
                 bank -= action.target.cost
             for effect in action.target.effects:
                 if isinstance(effect, Income):
                     income += effect
-            for effect in action.target.rewards:
-                if isinstance(effect, Reward):
-                    bank += effect
+            for reward in action.target.rewards:
+                if isinstance(reward, Reward):
+                    bank += reward
         bank += income
         logging.log(
             logging.DEBUG,
