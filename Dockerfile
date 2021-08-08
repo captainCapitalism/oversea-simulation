@@ -22,7 +22,5 @@ COPY poetry.lock pyproject.toml /app/
 RUN poetry config virtualenvs.create false \
   && poetry install $(test "$YOUR_ENV" == production && echo "--no-dev") --no-interaction --no-ansi
 
-COPY ./scripts /app/scripts
-RUN python -m spacy download pl_core_news_lg
 # Creating folders, and files for a project:
 COPY . /app
