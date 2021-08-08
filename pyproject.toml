@@ -15,13 +15,6 @@ pydantic = "^1.8.2"
 scipy = "^1.7.0"
 typer = "^0.3.2"
 colorama = "^0.4.4"
-jupyterlab = { version = "^3.0.16", optional = true }
-spacy = { version = "^3.1.0", optional = true }
-plotly = { version = "^5.1.0", optional = true }
-wordcloud = { version = "^1.8.1", optional = true }
-
-[tool.poetry.extras]
-nlp = ["jupyterlab", "spacy", "plotly", "wordcloud"]
 
 [tool.poetry.dev-dependencies]
 black = { version = "^21.6b0", extras = ["d"] }
