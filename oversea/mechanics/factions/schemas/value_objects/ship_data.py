@@ -3,7 +3,7 @@ from typing import Set, Optional
 
 from pydantic import BaseModel, Field
 
-from oversea.mechanics.factions.schemas.cost import Cost
+from oversea.mechanics.factions.schemas.value_objects.cost import Cost
 
 
 class Traits(str, enum.Enum):

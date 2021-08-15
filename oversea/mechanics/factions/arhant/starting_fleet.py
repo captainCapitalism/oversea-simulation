@@ -1,6 +1,6 @@
 from oversea.mechanics.factions.arhant import ships
-from oversea.mechanics.factions.schemas.fleet import Fleet
-from oversea.mechanics.factions.schemas.ship import Ship
+from oversea.mechanics.factions.schemas.entities.fleet import Fleet
+from oversea.mechanics.factions.schemas.entities.ship import Ship
 
 starting_fleet = Fleet(
     ships=[

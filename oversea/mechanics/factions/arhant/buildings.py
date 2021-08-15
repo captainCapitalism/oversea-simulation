@@ -1,6 +1,6 @@
-from oversea.mechanics.factions.schemas.building import Building
-from oversea.mechanics.factions.schemas.cost import Cost
-from oversea.mechanics.factions.schemas.income import Income, Reward
+from oversea.mechanics.factions.schemas.value_objects.building import Building
+from oversea.mechanics.factions.schemas.value_objects.cost import Cost
+from oversea.mechanics.factions.schemas.value_objects.income import Income, Reward
 
 eternal_forges = Building(
     name="Eternal Forges",

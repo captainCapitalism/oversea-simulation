@@ -7,7 +7,7 @@ import typer
 from pydantic import BaseModel
 
 from oversea.mechanics.city.sim.income import Report
-from oversea.mechanics.factions.schemas.fleet import Fleet
+from oversea.mechanics.factions.schemas.entities.fleet import Fleet
 
 SIM_DIRECTORY = "sim"
 

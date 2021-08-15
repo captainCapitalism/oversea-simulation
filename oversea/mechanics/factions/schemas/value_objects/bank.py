@@ -1,4 +1,6 @@
-from oversea.mechanics.factions.schemas.base_resources import BaseResources
+from oversea.mechanics.factions.schemas.value_objects.base_resources import (
+    BaseResources,
+)
 
 
 class Bank(BaseResources):

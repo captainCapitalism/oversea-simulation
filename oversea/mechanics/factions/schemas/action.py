@@ -1,10 +1,10 @@
 from pydantic import BaseModel
 
-from oversea.mechanics.factions.schemas.building import Building
-from oversea.mechanics.factions.schemas.colony_data import ColonyData
-from oversea.mechanics.factions.schemas.income import Income
-from oversea.mechanics.factions.schemas.ship import Ship
-from oversea.mechanics.factions.schemas.ship_data import ShipData
+from oversea.mechanics.factions.schemas.value_objects.building import Building
+from oversea.mechanics.factions.schemas.value_objects.colony_data import ColonyData
+from oversea.mechanics.factions.schemas.value_objects.income import Income
+from oversea.mechanics.factions.schemas.entities.ship import Ship
+from oversea.mechanics.factions.schemas.value_objects.ship_data import ShipData
 
 
 class Action(BaseModel):

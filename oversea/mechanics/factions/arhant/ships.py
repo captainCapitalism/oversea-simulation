@@ -1,5 +1,9 @@
-from oversea.mechanics.factions.schemas.cost import Cost
-from oversea.mechanics.factions.schemas.ship_data import ShipData, Stats, Traits
+from oversea.mechanics.factions.schemas.value_objects.cost import Cost
+from oversea.mechanics.factions.schemas.value_objects.ship_data import (
+    ShipData,
+    Stats,
+    Traits,
+)
 
 galley = ShipData(
     name="Galley",

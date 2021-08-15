@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from oversea.mechanics.factions.schemas.ship_data import ShipData
+from oversea.mechanics.factions.schemas.value_objects.ship_data import ShipData
 
 
 class Ship(BaseModel):

@@ -1,31 +1,30 @@
-from typing import Tuple, List
+from typing import List
 
 from pydantic import BaseModel
 
-from oversea.mechanics.factions.schemas.bank import Bank
-from oversea.mechanics.factions.schemas.base_resources import BaseResources
-from oversea.mechanics.factions.schemas.building import Building
-from oversea.mechanics.factions.schemas.colony_data import ColonyData
-from oversea.mechanics.factions.schemas.fleet import Fleet
-from oversea.mechanics.factions.schemas.income import Income
-from oversea.mechanics.factions.schemas.ship_data import ShipData, Stats
-from oversea.mechanics.factions.schemas.technology import Technology
+from oversea.mechanics.factions.schemas.value_objects.bank import Bank
+from oversea.mechanics.factions.schemas.value_objects.base_resources import (
+    BaseResources,
+)
+from oversea.mechanics.factions.schemas.value_objects.building import Building
+from oversea.mechanics.factions.schemas.value_objects.colony_data import ColonyData
+from oversea.mechanics.factions.schemas.entities.fleet import Fleet
+from oversea.mechanics.factions.schemas.value_objects.income import Income
+from oversea.mechanics.factions.schemas.value_objects.ship_data import ShipData, Stats
 
 
 class Faction(BaseModel):
 
     name: str
-    combat_factor: int
     base_resources: BaseResources
     base_income: BaseResources
-    main_goal: str
-    perks: Tuple[str, str]
     buildings: List[Building]
-    technologies: List[Technology]
-    magic_technologies: List[Technology]
     ships: List[ShipData]
     stronghold_stats: Stats
     income: Income
     bank: Bank
     fleet: Fleet
     colony_data: ColonyData
+
+    class Config:
+        extra = "forbid"

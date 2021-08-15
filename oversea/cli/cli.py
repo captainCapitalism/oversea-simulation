@@ -13,7 +13,7 @@ from oversea.cli.handlers import (
     dump_simulation,
 )
 from oversea.mechanics.city.sim.income import sim
-from oversea.mechanics.factions.schemas.bank import Bank
+from oversea.mechanics.factions.schemas.value_objects.bank import Bank
 
 app = typer.Typer()
 app.add_typer(builder)

@@ -1,7 +1,9 @@
 import operator
 
-from oversea.mechanics.factions.schemas.bank import Bank
-from oversea.mechanics.factions.schemas.base_resources import BaseResources
+from oversea.mechanics.factions.schemas.value_objects.bank import Bank
+from oversea.mechanics.factions.schemas.value_objects.base_resources import (
+    BaseResources,
+)
 
 
 def resolve_income(

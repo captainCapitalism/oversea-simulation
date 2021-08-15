@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from oversea.mechanics.factions.schemas.ship import Ship
+from oversea.mechanics.factions.schemas.entities.ship import Ship
 
 
 class Fleet(BaseModel):

@@ -1,5 +1,5 @@
-from oversea.mechanics.factions.schemas.bank import Bank
-from oversea.mechanics.factions.schemas.income import Income
+from oversea.mechanics.factions.schemas.value_objects.bank import Bank
+from oversea.mechanics.factions.schemas.value_objects.income import Income
 
 
 def test_adding_income_increases_bank_values():

@@ -15,11 +15,11 @@ from oversea.mechanics.factions.schemas.action import (
     CreateShip,
     DispatchShip,
 )
-from oversea.mechanics.factions.schemas.bank import Bank
-from oversea.mechanics.factions.schemas.cost import Cost
-from oversea.mechanics.factions.schemas.fleet import Fleet
-from oversea.mechanics.factions.schemas.income import Income, Reward
-from oversea.mechanics.factions.schemas.ship import Ship
+from oversea.mechanics.factions.schemas.value_objects.bank import Bank
+from oversea.mechanics.factions.schemas.value_objects.cost import Cost
+from oversea.mechanics.factions.schemas.entities.fleet import Fleet
+from oversea.mechanics.factions.schemas.value_objects.income import Income, Reward
+from oversea.mechanics.factions.schemas.entities.ship import Ship
 
 
 def handle_colony(
