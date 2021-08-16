@@ -18,10 +18,11 @@ pip install -r requirements.txt
 ```
 
 ### Using
-Installation steps should create executable command `sim`.
+Installation steps should create executable command `sim`, but only with released version, here 
+it is required to run app with `python -m oversea`
 
 ```bash
-sim
+python -m oversea
 ```
 Should invoke help:
 ```bash
@@ -46,9 +47,9 @@ Commands:
 
 For generating test data:
 
-`sim example`
+`python -m oversea example`
 
 Running an example:
 
-`sim run example`
+`python -m oversea run example`
 
